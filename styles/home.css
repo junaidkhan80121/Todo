@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap');
+
+.title-font{
+font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.sub-title-font{
+  font-family: "Quattrocento Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.description-font{
+  font-family: "Hind Madurai", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.main-block{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 5vh 5vw 5vh 5vw;
+    /* align-items: center; */
+    flex-direction: row;
+    align-items: center;
+}
+
+.control-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7vw;
+    margin-top: 5vh;
+}
+
+.title{
+    font-size: 35px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.add-btn{
+    border: solid 1px black;
+    padding: 10px 15px;
+    background-color: indigo;
+    color: white;
+    margin-left: auto;
+}
+
+
+
+input{
+    width: 100%;
+    border-radius: 4%;
+    margin: 8px 0px;
+    padding: 1.5vh 1vw 1.5vh 1vw;
+    box-sizing: border-box;
+    /* border: solid black 3px; */
+    border: none;
+    border: solid #6e66fb 3px;
+}
+
+input:focus{
+    border: solid #6e66fb 3px;
+}
+
+label{
+    font-size: 20px;
+}
+
+
+.alignment{
+    text-align: right;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alignment > .btn{
+    padding-right: 10px;
+    padding-left: 10px;
+    color: red;
+    font-size: 40px;
+}
+.title{
+    font-size: 20px;
+}
+
+
+.tabs-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1vw;
+    margin: 3vh 0vw 3vh 0vw;
+}
+
+.tabs-button-all{
+    background-color: #1e3f66;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8%;
+}
+
+.tabs-button-completed{
+    background-color: #00ab41;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8%;
+}
+
+.tabs-button-pending{
+    background-color: #f94449;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8%;
+}
+
+
+.main-btn{
+    background-color: #74b72e;
+    padding: 12px 20px;
+    border-radius: 8%;
+    color: white;
+    text-decoration: bold;
+    }
+    
+.logout-btn{
+    background-color: #f94449;
+    padding: 8px 15px;
+    border-radius: 8%;
+    color: white;
+}
+
+.empty-notes{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+

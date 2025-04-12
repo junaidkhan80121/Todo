@@ -1,0 +1,34 @@
+.toast-body{
+    z-index: 999;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 15px;
+    /* position: absolute; */
+    position: fixed;
+    padding: 0.1vh 2vw 0.1vh 1vw;
+    padding: auto;
+    top: 15%;
+    right: 1%;
+    box-shadow: solid black 3px;
+    color: white;
+    animation: slide 4s linear;
+}
+
+.toast-close-btn{
+    color: white;
+    cursor: pointer;
+    /* font-weight: bold; */
+    font-size: 30px !important;
+}
+
+@keyframes slide {
+    0% {transform: translateX(100px);}
+    1% {transform: translateX(0px);}
+    90% {transform: translateX(0px);}
+    99% {transform: translateX(0px);}
+    100% {transform: translateX(100px);}
+    /* 0% {opacity: 0.7;} */
+    /* 0% {opacity: 1;} */
+    /* 100% {opacity: 0;} */
+}

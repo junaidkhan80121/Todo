@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.container-login-box{
+    /* margin: 20vh 30vw 20vh 30vw; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-wrap: wrap;
+}
+
+.img-box{
+    width: 10vw;
+    min-width: 45vw;
+    height: auto;
+    width: 45vw;
+    padding: 0 3vw 0 3vw;
+    animation: float 4s ease-in-out infinite;
+}
+
+
+
+@keyframes float{
+    0%  {transform:translateY(0px);}
+    50% {transform: translateY(-20px);}
+    100% {transform: translateY(0px);}
+    
+}
+
+.form-box{
+    padding: 0 7vw 0 7vw !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5vh;
+    width: 45vw;
+    min-width: 45vw;
+}
+
+.form-box input{
+    margin: 2vh 0 2vh 0;
+}
+
+.form-box button{
+    margin: 2vh 0 0 0;
+}
+
+.login-title{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 2vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.login-btn{
+    background-color: #6e66fb;
+    padding: 15px 40px;
+    margin: 6vh 0 0 0;
+    color: white;
+    border-radius: 5%;
+    margin: 0 10vw
+}
+
+.signup-link{
+    margin: 2vh 0 0 0;
+    font-size: 15px;
+    background-color: #ff4122 !important;
+    padding: 2vh;
+    border-radius: 3%;
+    color: white;
+    /* font-weight: bold; */
+}
+
+@media(max-width:900px){
+    .img-box{
+        display: none;
+    }
+    .form-box{
+        min-width: 90vw !important;
+        width: 90vw;
+        padding: 15vw;
+        padding: 5vw !important;;
+        /* background-color: red; */
+    }
+    .container-login-box{
+        /* background-color: yellow; */
+    }
+}
