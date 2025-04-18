@@ -1,19 +1,19 @@
-.page-not-found-container{
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap:5vh
+.page-not-found-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5vh;
 }
 
-.image-404{
-    width: 30%;
-    height: auto;
-    /* margin-bottom: 3vh; */
+.image-404 {
+  width: 30%;
+  height: auto;
+  /* margin-bottom: 3vh; */
 }
 
-.title-404{
-    font-size: 35px;
-    margin-top: 5vh;
+.title-404 {
+  font-size: 35px;
+  margin-top: 5vh;
 }

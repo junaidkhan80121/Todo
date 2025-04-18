@@ -1,60 +1,33 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Toast from "../components/Toast";
 import "../../styles/login.css";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
+import { FormSubmitEvent } from "../types";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-
+  const { setEmail, setPassword, loginUser } = useLogin();
   const navigate = useNavigate();
 
   const displayToast = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
-      // setToastMessage("");
     }, 4100);
   };
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormSubmitEvent) => {
     e.preventDefault();
-    try {
-      if (username === "" || password === "") {
-        alert("Please Enter username and password");
-        displayToast();
-        return;
-      }
-      if (username.length < 5 || password.length < 5) {
-        setToastMessage(
-          "Please select a password of length more than 5 characters"
-        );
-        displayToast();
-        return;
-      }
-      const res = await axios.post("http://localhost:8000/login", {
-        username: username.toLowerCase(),
-        password: password,
-      });
-      localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("uid", res.data.uid);
-      navigate(`/notes/${res.data.uid}`, { state: { uid: res.data.uid } });
-    } catch (err) {
-      console.log(err)
-      setToastMessage(String(err.message));
-      displayToast();
-    }
+    await loginUser(setToastMessage, displayToast);
   };
 
   useEffect(() => {
     if (localStorage.getItem("loggedIn") === "true") {
-      const uid = localStorage.getItem("uid");
-      navigate(`/notes/${uid}`);
+      navigate(`/`);
     }
   }, []);
 
@@ -62,7 +35,11 @@ const Login = () => {
     <>
       <div className="container-login-box">
         <div className="img-box">
-          <img src="/login.svg" alt="" />
+          <img
+            src="/login2.svg"
+            style={{ width: "35vw", height: "auto" }}
+            alt="login-image"
+          />
         </div>
         <div className="form-box">
           <form onSubmit={handleLogin}>
@@ -76,7 +53,7 @@ const Login = () => {
               type="email"
               required
               placeholder="Email"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               type="password"
@@ -99,7 +76,12 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <Toast message={toastMessage} showToast={showToast} closeToast={setShowToast} toastType="error"/>
+          <Toast
+            message={toastMessage}
+            showToast={showToast}
+            closeToast={setShowToast}
+            toastType="error"
+          />
         </div>
       </div>
     </>

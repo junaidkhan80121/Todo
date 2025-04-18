@@ -1,9 +1,22 @@
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5vh;
-    background-color: #f9fcf9;
-    overflow-x: hidden;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  background-color: #f9fcf9;
+  overflow-x: hidden;
+  /* background: black; */
+  /* background: linear-gradient(90deg,rgba(44, 57, 113, 1) 0%, rgba(63, 81, 181, 1) 100%); */
 }
 
+.dark {
+  background-color: black;
+  color: white;
+  transition: 1s;
+}
+
+.light {
+  background-color: white;
+  color: black;
+  transition: 1s;
+}

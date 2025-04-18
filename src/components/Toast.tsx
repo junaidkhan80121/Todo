@@ -3,27 +3,32 @@ import "../../styles/toast.css";
 import "../../styles/home.css";
 
 type ToastProps = {
-  message: String,
-  showToast: boolean,
-  closeToast: any,
-  toastType: string
+  message: String;
+  showToast: boolean;
+  closeToast: any;
+  toastType: string;
 };
 
-const Toast: React.FC<ToastProps> = ({ message, showToast, closeToast, toastType }) => {
+const Toast: React.FC<ToastProps> = ({
+  message,
+  showToast,
+  closeToast,
+  toastType,
+}) => {
   if (!showToast) return;
 
-  const toast_styles={
-    success:{
-      backgroundColor:"green",
+  const toast_styles: any = {
+    success: {
+      backgroundColor: "green",
     },
-    error:{
-      backgroundColor:"red",
+    error: {
+      backgroundColor: "red",
     },
     warning: {
-      backgroundColor:"#ffde21",
-      color:"black"
-    }
-  }
+      backgroundColor: "#ffde21",
+      color: "black",
+    },
+  };
 
   return (
     <>

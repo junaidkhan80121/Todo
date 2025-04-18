@@ -1,147 +1,164 @@
-.card{
-    border: solid black 1px;
-    /* min-width: 30vw; */
-    margin-top: 3vh;
-    display: flex;
-    flex-direction: column;
-    padding: 3vh;
-    margin: 2vw;
-    gap: 2vh;
-    border-radius: 5%;
-    max-width: 20vw;
-    min-width: 30vw;
-    min-height: 20vh;
-    max-height: 40vh;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    background-color: white;
+.card {
+  border: solid black 1px;
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  padding: 3vh 2vw;
+  margin: 2vh 1vw;
+  gap: 1.5vh;
+  border-radius: 5%;
+  max-width: 30vw;
+  min-width: 30vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: 1s;
+  /* background-color: #e8e9eb; */
+  /* color: linear-gradient(90deg,rgba(44, 57, 113, 1) 0%, rgba(63, 81, 181, 1) 100%) !important; */
+  /* background: #2C3971; */
+  /* background: linear-gradient(90deg,rgba(15,210,255,255) 0%, rgba(14,65,237,255) 100%); */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
 }
 
-.card-desc{
-    font-size: px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    /* max-width: 50vw; */
-    max-height: 10vh;
+.dark .card {
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+  background-color: #6a6a6a;
+  border: solid white 2px;
+  transition: 1s;
 }
 
-
-.complete{
-    display: flex;
-    background-color: green;
-    color: white;
-    padding: 1vh;
-    width: 40%;
-    border-radius: 5%;
-    justify-content: center;
+.light .card {
+  background: #fff;
+  box-shadow: 15px 15px 10px 0px rgba(0, 0, 0, 0.3);
+  transition: 1s;
 }
 
-.incomplete{
-    display: flex;
-    background-color: lightgray;
-    width: 40%;
-    border-radius: 5%;
-    justify-content: center;
-    padding: 1vh !important
+.card-title {
+  font-size: 20px !important;
+  font-weight: bold;
 }
 
-.checkbox-mark-text{
-    font-size: 15px;
-    margin-right: 1vw;
+.card-desc {
+  font-size: 15px !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 10vh;
 }
 
-input[type=checkbox]{
-    zoom: 2;
+.complete {
+  display: flex;
+  align-items: center;
+  background-color: green;
+  color: white;
+  padding: 1vh;
+  width: 40%;
+  border-radius: 5%;
+  font-size: 13px;
+  transition: 1s;
 }
 
-.card-title{
-    font-size: 30px;
-    font-weight: bold;
+.incomplete {
+  display: flex;
+  align-items: center;
+  background-color: lightgray;
+  color: black;
+  padding: 1vh;
+  width: 40%;
+  border-radius: 5%;
+  font-size: 13px;
+  transition: 1s;
 }
 
-.setting{
-    display: flex;
-    align-items: center;
-    /* background-color: lightcoral */
+.checkbox-mark-text {
+  font-size: 15px;
+  margin-right: 1vw;
 }
 
-input[type=checkbox] {
-    accent-color: #74b72e;
-  }
-
-input[type=text]{
-    width: 100%;
-    padding: 12px 12px;
-    margin: 8px 0px;
-    box-sizing: border-box;
-   }
-   
-   label{
-       font-size: 20px;
-   }
-   
-   .alignment{
-       text-align: right;
-       margin-left: auto;
-       display: flex;
-       align-items: center;
-       justify-content: space-between;
-   }
-   
-   .alignment > .btn{
-       padding-right: 10px;
-       padding-left: 10px;
-       color: red;
-       font-size: 40px;
-       /* border: solid black 1px; */
-   }
-   .title{
-       font-size: 20px;
-   }
-
-   .update-btn{
-    border: solid 1px black;
-    padding: 15px 25px;
-    background-color: #6e66fb;
-    color: white;
-    border-radius: 8%;
-    margin: 2vh 0 0 0vw;
+input[type="checkbox"] {
+  zoom: 2;
 }
 
-.delete-modal{
-    display: flex;
-    justify-content: flex-end;
-    /* padding: 6vh 0vw 3vh 0; */
-    padding: 1vh;
-    gap: 1vw;
+.setting {
+  display: flex;
+  align-items: center;
+  /* background-color: lightcoral */
 }
 
-.delete-note-btn-modal{
-    background-color: #ff4122;
-    color: white;
-    font-size: 17px;
-    padding: 7px 35px;
-    border-radius: 6%;
+input[type="checkbox"] {
+  accent-color: #74b72e;
 }
 
-.cancel-note-btn-modal{
-    background-color: #6e66fb;
-    padding: 7px 30px;
-    border-radius: 6%;
-    font-size: 17px;
-    color: white;
+input[type="text"] {
+  width: 100%;
+  padding: 12px 12px;
+  margin: 8px 0px;
+  box-sizing: border-box;
 }
 
-
-.delete-modal-desc{
-    margin-bottom:20px;
-    font-size: 17px;
-    text-decoration: bold;
+label {
+  font-size: 20px;
 }
 
+.alignment {
+  text-align: right;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-@media (max-width:768px) {
-    .card{
+.alignment > .btn {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: red;
+  font-size: 40px;
+  /* border: solid black 1px; */
+}
+.title {
+  font-size: 20px;
+}
+
+.update-btn {
+  border: solid 1px black;
+  padding: 15px 25px;
+  background-color: #6e66fb;
+  color: white;
+  border-radius: 8%;
+  margin: 2vh 0 0 0vw;
+}
+
+.delete-modal {
+  display: flex;
+  justify-content: flex-end;
+  /* padding: 6vh 0vw 3vh 0; */
+  padding: 1vh;
+  gap: 1vw;
+}
+
+.delete-note-btn-modal {
+  background-color: #ff4122;
+  color: white;
+  font-size: 17px;
+  padding: 7px 35px;
+  border-radius: 6%;
+}
+
+.cancel-note-btn-modal {
+  background-color: #6e66fb;
+  padding: 7px 30px;
+  border-radius: 6%;
+  font-size: 17px;
+  color: white;
+}
+
+.delete-modal-desc {
+  margin-bottom: 20px;
+  font-size: 17px;
+  text-decoration: bold;
+}
+
+@media (max-width: 768px) {
+  .card {
     border: solid black 1px;
     margin-top: 3vh;
     display: flex;
@@ -156,20 +173,18 @@ input[type=text]{
     max-height: 40vh;
     text-overflow: ellipsis;
     overflow: hidden;
-    }
+  }
 
-    .card-title{
-        font-size: 40px;
-        font-weight: bold;
-    }
-    .card-desc{
-        font-size: 25px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        /* font-weight: bold !important; */
-        /* max-width: 50vw; */
-        max-height: 10vh;
-    }
-  
-    
+  .card-title {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .card-desc {
+    font-size: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* font-weight: bold !important; */
+    /* max-width: 50vw; */
+    max-height: 10vh;
+  }
 }

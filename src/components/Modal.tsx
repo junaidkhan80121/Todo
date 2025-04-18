@@ -1,13 +1,7 @@
 import React from "react";
 import "../../styles/modal.css";
-import '../../styles/home.css';
-
-type ModalProps = {
-  isModalOpen: boolean,
-  closeModal:  React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>,
-  children: any,
-  title: string,
-};  
+import "../../styles/home.css";
+import { ModalProps } from "../types";
 
 const Modal: React.FC<ModalProps> = ({
   isModalOpen,

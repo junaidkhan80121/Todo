@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
 import { Link } from "react-router-dom";
 import Toast from "../components/Toast";
+import useSignup from "../hooks/useSignup";
+import { FormSubmitEvent } from "../types";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const { setEmail, setPassword, setVerifyPassword, signupUser } = useSignup();
   const navigate = useNavigate();
 
   const displayToast = () => {
@@ -18,62 +17,15 @@ const Signup = () => {
     setTimeout(() => {
       setToastOpen(false);
     }, 4000);
-    // setToastMessage("");
   };
 
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignup = async (e: FormSubmitEvent) => {
     e.preventDefault();
-    try {
-      if (username === "" || password === "" || passwordCheck === "") {
-        alert("Please Fill out all the fields");
-        return;
-      }
-      if (password !== passwordCheck) {
-        setToastMessage("Passwords do not match");
-        displayToast();
-        return;
-      }
-      if (username.length < 5 || password.length < 5) {
-        setToastMessage("Please select a password of length more than 5 characters");
-        displayToast();
-        return;
-      }
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      let passwordRegex =
-        /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>\-_+=`~;'])[A-Za-z0-9!@#$%^&*(),.?":{}|<>\-_+=`~;']+$/;
-      if (!emailRegex.test(username)) {
-        // alert("Invalid email. Please Enter a valid email.");
-        setToastMessage("Invalid email. Please Enter a valid email.");
-        displayToast();
-        return;
-      }
-      if (!passwordRegex.test(password)) {
-        // alert("Select a password with at Leat 1 Uppercase and special character");
-        setToastMessage("Choose password with at least 1 Uppercase and 1 Special character");
-        displayToast();
-        return;
-      }
-
-      const res = await axios.post("http://localhost:8000/signup", {
-        username: username.toLowerCase(),
-        password: password,
-      });
-      localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("uid", res.data.uid);
-      navigate(`/notes/${res.data.uid}`, { state: { uid: res.data.uid } });
-      // console.log(res.data)
-      // navigate('/notes')
-    } catch (err) {
-      console.log(err);
-      alert(err);
-    }
+    await signupUser(setToastMessage, displayToast);
   };
 
   useEffect(() => {
-    if (localStorage.getItem("loggedIn") === "true") {
-      const uid = localStorage.getItem("uid");
-      navigate(`/notes/${uid}`);
-    }
+    if (localStorage.getItem("loggedIn") === "true") navigate("/");
   }, []);
 
   return (
@@ -94,7 +46,7 @@ const Signup = () => {
               placeholder="Username"
               type="email"
               required
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder="Password"
@@ -106,7 +58,7 @@ const Signup = () => {
               placeholder="Retype Password"
               type="password"
               required
-              onChange={(e) => setPasswordCheck(e.target.value)}
+              onChange={(e) => setVerifyPassword(e.target.value)}
             />
             <div
               style={{
@@ -124,7 +76,12 @@ const Signup = () => {
             </div>
           </form>
         </div>
-        <Toast showToast={toastOpen} message={toastMessage} closeToast={setToastOpen} toastType="error"/>
+        <Toast
+          showToast={toastOpen}
+          message={toastMessage}
+          closeToast={setToastOpen}
+          toastType="error"
+        />
       </div>
     </>
   );

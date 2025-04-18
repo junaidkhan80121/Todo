@@ -1,5 +1,5 @@
 import "../../styles/404.css";
-import '../../styles/home.css';
+import "../../styles/home.css";
 
 const PageNotFound = () => {
   return (

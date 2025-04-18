@@ -1,22 +1,22 @@
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 70vh;
-    gap: 3vh;
-    /* border: solid black 1px; */
-    margin: 0 30vw 0 0vw;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  gap: 3vh;
+  /* border: solid black 1px; */
+  margin: 0 30vw 0 0vw;
 }
 
-.completed{
-    background-color: green;
-    padding: 3vh 3vw !important;
-    color: white;
+.completed {
+  background-color: green;
+  padding: 3vh 3vw !important;
+  color: white;
 }
 
-.pending{
-    background-color: lightgray;
-    padding: 3vh 3vw !important;
-    color: black;
+.pending {
+  background-color: lightgray;
+  padding: 3vh 3vw !important;
+  color: black;
 }
