@@ -7,6 +7,7 @@ import { Notes, userToken } from "../types";
 export const noteServices = {
   getNotesService: async (user:userToken) => {
     try {
+      await connectDB();
       const isUser = await userModel.findOne({ _id: user.uid });
       if (!isUser) return { status: 404, payload: { msg: "User Not Found" } };
       return { status: 200, payload: { notes: isUser.notes } };
@@ -25,7 +26,6 @@ export const noteServices = {
         };
       const isUser = await userModel.findOne({ _id: user.uid });
       if (!isUser) return { status: 400, payload: { msg: "User Not Found" } };
-      console.log(isUser.notes)
       isUser.notes.push({ title: title, description: description });
       await isUser.save();
       return { status: 201, payload: { notes: isUser.notes } };
