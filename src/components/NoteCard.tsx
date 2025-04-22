@@ -138,6 +138,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
             isModalOpen={isDeleteModalOpen}
             closeModal={closeDeleteModal}
             title="Delete Note"
+            modalType="note"
           >
             <div className="sub-title-font delete-modal-desc">
               Want to Delete Note? This change is irreversible.
@@ -172,6 +173,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
             isModalOpen={isModalOpen}
             closeModal={closeModal}
             title="Update Note"
+            modalType="note"
           >
             <div>
               <label>Title</label>
@@ -236,7 +238,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
         showToast={openToast}
         closeToast={setOpenToast}
       />
-      <Modal isModalOpen={noteModal} closeModal={closeNoteModal} title="">
+      <Modal isModalOpen={noteModal} closeModal={closeNoteModal} title="" modalType="loading">
               <CircularProgress/>
       </Modal>
     </>

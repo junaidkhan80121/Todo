@@ -114,6 +114,7 @@ const Home = () => {
               isModalOpen={isModalOpen}
               closeModal={closeModal}
               title="Add Note"
+              modalType="note"
             >
               <div>
                 <label>Title</label>
@@ -191,6 +192,7 @@ const Home = () => {
               isModalOpen={isModalOpen}
               closeModal={closeModal}
               title="Add Note"
+              modalType="note"
             >
               <div>
                 <label>Title</label>
@@ -266,6 +268,7 @@ const Home = () => {
               isModalOpen={isModalOpen}
               closeModal={closeModal}
               title="Add Note"
+              modalType="note"
             >
               <div>
                 <label>Title</label>

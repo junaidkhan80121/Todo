@@ -25,7 +25,8 @@ export type CardProps = {
 
 export type ModalProps = {
   isModalOpen: boolean;
-  closeModal: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
+  modalType:string,
+  closeModal: ()=>void;//React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
   children: React.ReactNode;
   title: string;
 };

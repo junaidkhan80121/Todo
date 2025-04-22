@@ -6,11 +6,22 @@ import { ModalProps } from "../types";
 const Modal: React.FC<ModalProps> = ({
   isModalOpen,
   closeModal,
-  children,
   title,
+  modalType,
+  children,
 }) => {
+
   if (!isModalOpen) return null;
 
+  if(modalType==='loading')
+  return (
+    <div className="modal-layout" onClick={closeModal}>
+      <div  onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
+)
+ if(modalType==="note")
   return (
     <div className="modal-layout" onClick={closeModal}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

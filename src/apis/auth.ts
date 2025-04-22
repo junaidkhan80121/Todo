@@ -7,6 +7,7 @@ export const signupAPI = async(username:string,password:string)=>{
 }
 
 export const loginAPI = async(email:string,password:string)=>{
+  console.log(`${BASEURL}/${AUTHURL}/login`)
   return await axios.post(`${BASEURL}/${AUTHURL}/login`,{email:email.toLowerCase(),password:password},{withCredentials:true})
 }
 

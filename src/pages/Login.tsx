@@ -27,8 +27,9 @@ const Login = () => {
   const handleLogin = async (e: FormSubmitEvent) => {
     e.preventDefault();
     setLoginModal(true)
+    console.log("modal opened")
     await loginUser(setToastMessage, displayToast);
-    // setLoginModal(false)
+    setLoginModal(false)
   };
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const Login = () => {
             toastType="error"
           />
         </div>
-         <Modal isModalOpen={loginModal} closeModal={closeLoginModal} title="">
+         <Modal isModalOpen={loginModal} closeModal={closeLoginModal} title="" modalType="loading">
               <CircularProgress/>
          </Modal>
       </div>

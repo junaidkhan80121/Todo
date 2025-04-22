@@ -5,9 +5,9 @@
   border-radius: 50%;
   border-top: 5px solid #3498db;
   border-bottom: 5px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: rotate 2s 2s linear infinite;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: rotate 2s linear infinite;
 }
 
 @-webkit-keyframes spin {
