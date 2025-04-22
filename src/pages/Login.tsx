@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     setLoginModal(true)
     await loginUser(setToastMessage, displayToast);
-    setLoginModal(false)
+    // setLoginModal(false)
   };
 
   useEffect(() => {

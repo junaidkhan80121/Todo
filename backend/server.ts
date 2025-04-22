@@ -21,8 +21,7 @@ const PORT = process.env.PORT || 8000
 
 //middlewares
 app.use(express.json());
-app.options("*", cors());
-// app.use(cors({origin: ["https://todo-sz.onrender.com/"],credentials: true}));
+// app.options("/*", cors());
 app.use(cors({ origin: "https://todo-sz.onrender.com", credentials: true, methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], allowedHeaders: ["accessToken","refreshToken","Content-Type", "Authorization"],}));
 app.use(cookieParser());
 
