@@ -15,17 +15,17 @@ const useLogin = () => {
       const newRefreshToken = res.data.accessToken;
       localStorage.setItem("accessToken", newRefreshToken);
     } catch (err) {
-      // console.log("---",err.message)
+      console.log("Error: ",((err as any).message))
       localStorage.removeItem("loggedIn");
       localStorage.removeItem("accessToken");
       navigate("/login");
     }
   };
 
-  const checkLogin = () => {
+  const checkLogin = async () => {
     if (localStorage.getItem("loggedIn") === "true") {
-      refreshToken();
-      getUserNotes();
+      await refreshToken();
+      await getUserNotes();
     } else navigate("/login");
   };
 
