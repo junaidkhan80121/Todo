@@ -8,7 +8,7 @@ const useSignup = () => {
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
 
-  const signupUser = async (setToastMessage: any, displayToast: () => void) => {
+  const signupUser = async (setToastMessage: React.Dispatch<React.SetStateAction<string>>, displayToast: () => void) => {
     try {
       if (email === "" || password === "" || verifyPassword === "") {
         alert("Please Fill out all the fields");
@@ -46,7 +46,7 @@ const useSignup = () => {
       localStorage.setItem("accessToken", res.data.accessToken);
       navigate("/");
       // return res
-    } catch (err: any) {
+    } catch (err:any) {
       if (err.status === 401) setToastMessage("User Already Exists");
       else if (err.status === 440) {
         localStorage.removeItem("accessToken");

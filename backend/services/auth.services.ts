@@ -37,8 +37,8 @@ const authServices = {
         status: 200,
         payload: { msg: "Logged In", accessToken: accessToken },
       };
-    } catch (err:any) {
-      console.log("Inner", err.message);
+    } catch (err) {
+      console.log("Inner", err as Error);
       return { status: 500, payload: { msg: err } };
     }
   },
@@ -86,8 +86,8 @@ const authServices = {
         httpOnly: true,
       });
       return { status: 201, payload: { accessToken: accessToken } };
-    } catch (err:any) {
-      console.log(err.message);
+    } catch (err) {
+      console.log(err as Error);
       return { status: 500, payload: { msg: String(err) } };
     }
   },
@@ -101,12 +101,14 @@ const authServices = {
       const accessToken = createAccessToken({ uid: UID });
       return {status: 200, payload: { msg: "Token Refreshed", accessToken: accessToken },
       };
-    } catch (err:any) {
-      console.log(err.message);
-      if (err.name === "TokenExpiredError")
+    } catch (err) {
+      if(err instanceof Error)
+        console.log(err.message)
+      else{
+      if ((err as Error).name === "TokenExpiredError")
         return { status: 440, payload: { msg: "Invalid Token" } };
       return { status: 500, payload: { msg: "Internal server Error" } };
-    }
+    }}
   },
 
   logoutService: async (refreshToken:string, res:Response) => {
@@ -115,8 +117,8 @@ const authServices = {
         return res.status(401).send({ msg: "Unauthorized Request" });
       res.clearCookie("refreshToken", { path: "/auth", httpOnly: true });
       return { status: 200, payload: { msg: "Logged out Successfully" } };
-    } catch (err:any) {
-      console.log(err.message);
+    } catch (err) {
+      console.log((err as Error).message);
       return { status: 500, payload: { msg: "Internal server Error" } };
     }
   },

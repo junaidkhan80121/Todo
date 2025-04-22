@@ -7,9 +7,11 @@ import ChecklistIcon from "@mui/icons-material/Checklist";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
 import DoneIcon from "@mui/icons-material/Done";
 import Toast from "../components/Toast";
-import { useSelector } from "react-redux";
 import useNotes from "../hooks/useNotes";
 import useLogin from "../hooks/useLogin";
+import { Note } from "../types";
+import { useAppSelector} from "../hooks/useType";
+
 
 const Home = () => {
   const [title, setTitle] = useState<string>("");
@@ -21,18 +23,15 @@ const Home = () => {
   const [toastMsg, setToastMsg] = useState<string>("");
   const [toastType, setToastType] = useState<string>("success");
   const { addUserNote } = useNotes();
-  const notes = useSelector((state: any) => state.noteSlice.notes);
-  const pendingNotes = useSelector((state: any) => state.noteSlice.pendingNotes);
-  const completedNotes = useSelector((state: any) => state.noteSlice.completedNotes);
+  const notes = useAppSelector((state) => state.noteSlice.notes);
+  const pendingNotes = useAppSelector((state) => state.noteSlice.pendingNotes);
+  const completedNotes = useAppSelector((state) => state.noteSlice.completedNotes);
   const { checkLogin } = useLogin();
 
   useEffect(() => {
     checkLogin();
   }, []);
 
-  // useEffect(()=>{
-    // console.log("re-rendered")
-  // },[notes])
 
   const showToast = () => {
     setOpenToast(true);
@@ -94,7 +93,7 @@ const Home = () => {
           </div>
           <div className="main-block">
             {notes.length != 0 ? (
-              notes.map((note: any) => (
+              notes.map((note: Note) => (
                 <Card
                   key={note._id}
                   // setIsModalOpen={setIsModalOpen}
@@ -176,7 +175,7 @@ const Home = () => {
           </div>
           <div className="main-block">
             {completedNotes.length != 0 ? (
-              completedNotes.map((note: any) => (
+              completedNotes.map((note: Note) => (
                 <Card
                   key={note._id}
                   title={note.title}
@@ -251,7 +250,7 @@ const Home = () => {
           </div>
           <div className="main-block">
             {pendingNotes.length != 0 ? (
-              pendingNotes.map((note: any) => (
+              pendingNotes.map((note: Note) => (
                 <Card
                   key={note._id}
                   title={note.title}

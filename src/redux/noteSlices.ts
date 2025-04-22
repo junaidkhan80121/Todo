@@ -10,18 +10,17 @@ const notesSlice = createSlice({
   name: "noteSlice",
   initialState,
   reducers: {
-    setNotes: (state: any, action: any) => {
+    setNotes: (state, action) => {
       state.notes = action.payload;
     },
-    setPendingNotes: (state: any, action: any) => {
+    setPendingNotes: (state, action) => {
       state.pendingNotes = action.payload;
     },
-    setCompletedNotes: (state: any, action: any) => {
+    setCompletedNotes: (state, action) => {
       state.completedNotes = action.payload;
     },
   },
 });
 
 export default notesSlice.reducer;
-export const { setNotes, setCompletedNotes, setPendingNotes } =
-  notesSlice.actions;
+export const { setNotes, setCompletedNotes, setPendingNotes } = notesSlice.actions;

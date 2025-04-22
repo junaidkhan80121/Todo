@@ -7,6 +7,3 @@ export const noteModel = new mongoose.Schema<Notes>({
   description: { type: String, required: true },
   checked: { type: Boolean, required: true, default:false },
 });
-
-
-exports = noteModel;

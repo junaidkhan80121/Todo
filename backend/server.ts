@@ -1,7 +1,6 @@
 //library imports
-import express, {Response, Request, NextFunction} from 'express'
+import express from 'express'
 const cookieParser = require('cookie-parser')
-// import cookieParser from 'cookie-parser'
 const cors = require('cors')
 import * as mongoose from 'mongoose'
 import * as dotenv from 'dotenv';
@@ -28,20 +27,20 @@ app.use(cookieParser());
 mongoose
   .connect("mongodb://localhost:27017/notesapp")
   .then(() => console.log("Database connected"))
-  .catch((err:any) => console.log("Error", err));
+  .catch((err) => console.log("Error", err));
 
 
 //routes
-app.use('/notes',isLoggedIn ,notesRouter)
+app.use('/notes',notesRouter)
 app.use('/auth',authRouter);
 
 
 //error route
-app.use((err:any,req:Request,res:any,next:NextFunction)=>{
-  if(err)
-    return res.status(500).send({msg:"Internal error. Please try after sometime."})
-  next()
-})
+// app.use((err:Error,_req:Request,res:Response,next:NextFunction)=>{
+//   if(err)
+//     return res.status(500).send({msg:"Internal error. Please try after sometime."})
+//   next()
+// })
 
 
 //start the app

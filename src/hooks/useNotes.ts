@@ -1,5 +1,5 @@
 // import {useState} from 'react';
-
+import React from "react";
 import { useDispatch } from "react-redux";
 import {
   addNote,
@@ -14,25 +14,27 @@ import {
   setCompletedNotes,
 } from "../redux/noteSlices";
 
+import { Note } from "../types";
+
 const useNotes = () => {
   const dispatch = useDispatch();
 
   const deleteUserNote = async (
     noteID: string,
-    setToastMsg: any,
-    setToastType: any,
-    showToast: any,
-    setOpenDeleteModal: any
+    setToastMsg: React.Dispatch<React.SetStateAction<string>>,
+    setToastType: React.Dispatch<React.SetStateAction<string>>,
+    showToast: ()=>void,
+    setOpenDeleteModal: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       const res = await deleteNote(noteID);
       const allNotes = res.data.notes;
       dispatch(setNotes(allNotes));
       const tempCompletedNotes = allNotes.filter(
-        (note: any) => note.checked === true
+        (note: Note) => note.checked === true
       );
       const tempPendingNotes = allNotes.filter(
-        (note: any) => note.checked === false
+        (note: Note) => note.checked === false
       );
       dispatch(setPendingNotes(tempPendingNotes));
       dispatch(setCompletedNotes(tempCompletedNotes));
@@ -53,10 +55,10 @@ const useNotes = () => {
     title: string,
     description: string,
     checked: boolean,
-    setToastMsg: any,
-    setToastType: any,
-    setIsModalOpen: any,
-    showToast: any
+    setToastMsg: React.Dispatch<React.SetStateAction<string>>,
+    setToastType: React.Dispatch<React.SetStateAction<string>>,
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    showToast: ()=>void
   ) => {
     try {
       if (title.length > 20 || description.length > 50) {
@@ -70,10 +72,10 @@ const useNotes = () => {
       const allNotes = res.data.notes;
       dispatch(setNotes(allNotes));
       const tempCompletedNotes = allNotes.filter(
-        (note: any) => note.checked === true
+        (note: Note) => note.checked === true
       );
       const tempPendingNotes = allNotes.filter(
-        (note: any) => note.checked === false
+        (note: Note) => note.checked === false
       );
       dispatch(setPendingNotes(tempPendingNotes));
       dispatch(setCompletedNotes(tempCompletedNotes));
@@ -92,8 +94,8 @@ const useNotes = () => {
 
   const updateUserNoteStatus = async (
     noteId: string,
-    setToastMsg: any,
-    setToastType: any,
+    setToastMsg: React.Dispatch<React.SetStateAction<string>>,
+    setToastType: React.Dispatch<React.SetStateAction<string>>,
     showToast: () => void
   ) => {
     try {
@@ -101,10 +103,10 @@ const useNotes = () => {
       const allNotes = res.data.notes;
       dispatch(setNotes(allNotes));
       const tempCompletedNotes = allNotes.filter(
-        (note: any) => note.checked === true
+        (note: Note) => note.checked === true
       );
       const tempPendingNotes = allNotes.filter(
-        (note: any) => note.checked === false
+        (note: Note) => note.checked === false
       );
       dispatch(setPendingNotes(tempPendingNotes));
       dispatch(setCompletedNotes(tempCompletedNotes));
@@ -123,12 +125,12 @@ const useNotes = () => {
     title: string,
     description: string,
     checked: boolean,
-    setToastMsg: any,
-    setToastType: any,
+    setToastMsg: React.Dispatch<React.SetStateAction<string>>,
+    setToastType: React.Dispatch<React.SetStateAction<string>>,
     showToast: () => void,
-    setIsModalOpen: any,
-    setTitle: any,
-    setDescription: any
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    setTitle: React.Dispatch<React.SetStateAction<string>>,
+    setDescription: React.Dispatch<React.SetStateAction<string>>
   ) => {
     try {
       if (title.length > 20 || description.length > 50) {
@@ -149,10 +151,10 @@ const useNotes = () => {
       const newNotes = res.data.notes;
       dispatch(setNotes(newNotes));
       const tempPendingNotes = newNotes.filter(
-        (note: any) => note.checked === false
+        (note: Note) => note.checked === false
       );
       const tempCompletedNotes = newNotes.filter(
-        (note: any) => note.checked === true
+        (note: Note) => note.checked === true
       );
       dispatch(setPendingNotes(tempPendingNotes));
       dispatch(setCompletedNotes(tempCompletedNotes));
@@ -177,15 +179,15 @@ const useNotes = () => {
       // console.log(allNotes)
       dispatch(setNotes(allNotes));
       const tempCompletedNotes = allNotes.filter(
-        (note: any) => note.checked === true
+        (note: Note) => note.checked === true
       );
       const tempPendingNotes = allNotes.filter(
-        (note: any) => note.checked === false
+        (note: Note) => note.checked === false
       );
       dispatch(setPendingNotes(tempPendingNotes));
       dispatch(setCompletedNotes(tempCompletedNotes));
-    } catch (err: any) {
-      console.log("Error in getting notes:", err);
+    } catch (err) {
+      console.log("Error in getting notes:", (err as Error).message);
     }
   };
 

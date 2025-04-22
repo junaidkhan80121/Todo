@@ -1,7 +1,7 @@
 // import * as jwt from 'jsonwebtoken';
 import { userModel } from "../models/model.user";
 require("dotenv").config();
-import { userToken } from "../types";
+import { Notes, userToken } from "../types";
 
 export const noteServices = {
   getNotesService: async (user:userToken) => {
@@ -9,8 +9,8 @@ export const noteServices = {
       const isUser = await userModel.findOne({ _id: user.uid });
       if (!isUser) return { status: 404, payload: { msg: "User Not Found" } };
       return { status: 200, payload: { notes: isUser.notes } };
-    } catch (err:any) {
-      return { status: 500, payload: { msg: err.message } };
+    } catch (err) {
+      return { status: 500, payload: { msg: (err as Error).message } };
     }
   },
 
@@ -23,11 +23,12 @@ export const noteServices = {
         };
       const isUser = await userModel.findOne({ _id: user.uid });
       if (!isUser) return { status: 400, payload: { msg: "User Not Found" } };
+      console.log(isUser.notes)
       isUser.notes.push({ title: title, description: description });
       await isUser.save();
       return { status: 201, payload: { notes: isUser.notes } };
-    } catch (err:any) {
-      return { status: 500, payload: { msg: err.message } };
+    } catch (err) {
+      return { status: 500, payload: { msg: (err as Error).message } };
     }
   },
 
@@ -43,8 +44,8 @@ export const noteServices = {
       isUser.notes.pull({ _id: noteId });
       await isUser.save();
       return { status: 201, payload: { notes: isUser.notes } };
-    } catch (err:any) {
-      return { status: 500, payload: { msg: err.message } };
+    } catch (err) {
+      return { status: 500, payload: { msg: (err as Error).message } };
     }
   },
 
@@ -58,13 +59,13 @@ export const noteServices = {
       const isUser = await userModel.findById({ _id: user.uid });
       if (!isUser) return { status: 404, payload: { msg: "User Not Found" } };
       const note = isUser.notes.id(id);
-      note.title = title;
-      note.description = description;
-      note.checked = checked;
+      (note as Notes).title = title;
+      (note as Notes).description = description;
+      (note as Notes).checked = checked;
       await isUser.save();
       return { status: 200, payload: { notes: isUser.notes } };
-    } catch (err:any) {
-      console.log(err.message);
+    } catch (err) {
+      console.log((err as Error).message);
       return { status: 500, payload: { msg: "Internal Server Error" } };
     }
   },
@@ -83,9 +84,9 @@ export const noteServices = {
       note.checked = !note.checked;
       await isUser.save();
       return { status: 200, payload: { notes: isUser.notes } };
-    } catch (err:any) {
-      console.log(err.message);
-      return { status: 500, payload: { msg: err.message } };
+    } catch (err) {
+      console.log((err as Error).message);
+      return { status: 500, payload: { msg: (err as Error).message } };
     }
   },
 };

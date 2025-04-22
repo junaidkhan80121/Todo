@@ -6,14 +6,15 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { logoutAPI } from "../apis/auth";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeThemeMode } from "../redux/themeSlice";
+import { useAppSelector } from "../hooks/useType";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const themeMode = useSelector((state: any) => state.themeSlice.currentTheme);
+  const themeMode = useAppSelector((state) => state.themeSlice.currentTheme);
 
   const handleLogout = async () => {
     logoutAPI();

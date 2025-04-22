@@ -13,9 +13,8 @@ const useLogin = () => {
     try {
       const res = await refreshTokenAPI();
       const newRefreshToken = res.data.accessToken;
-      console.log(newRefreshToken);
       localStorage.setItem("accessToken", newRefreshToken);
-    } catch (err: any) {
+    } catch (err) {
       // console.log("---",err.message)
       localStorage.removeItem("loggedIn");
       localStorage.removeItem("accessToken");
@@ -30,7 +29,7 @@ const useLogin = () => {
     } else navigate("/login");
   };
 
-  const loginUser = async (setToastMessage: any, displayToast: () => void) => {
+  const loginUser = async (setToastMessage: React.Dispatch<React.SetStateAction<string>>, displayToast: () => void) => {
     try {
       if (email === "" || password === "") {
         displayToast();

@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PageNotFound from "./pages/404";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./hooks/useType";
 
 function App() {
-  const themeMode = useSelector((state: any) => state.themeSlice.currentTheme);
+  const themeMode = useAppSelector((state) => state.themeSlice.currentTheme);
 
   return (
     <div className={themeMode === "light" ? "light" : "dark"}>
