@@ -12,7 +12,7 @@ const useLogin = () => {
   const refreshToken = async () => {
     try {
       const res = await refreshTokenAPI();
-      const newRefreshToken = res.data.accessToken;
+      const newRefreshToken = await res.data.accessToken;
       localStorage.setItem("accessToken", newRefreshToken);
     } catch (err) {
       console.log("Error: ",((err as Error).message))
@@ -24,8 +24,8 @@ const useLogin = () => {
 
   const checkLogin = async () => {
     if (localStorage.getItem("loggedIn") === "true") {
-      await refreshToken();
       await getUserNotes();
+      await refreshToken();
     } 
     else navigate("/login");
   };
@@ -44,9 +44,10 @@ const useLogin = () => {
         return;
       }
       const res = await loginAPI(email, password);
+      const accessToken = res.data.accessToken
       localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("accessToken", res.data.accessToken);
-      navigate(`/`);
+      localStorage.setItem("accessToken", accessToken);
+      navigate('/');
     } catch (err: any) {
       console.log(err);
       if (err.status === 404) setToastMessage("User not found");

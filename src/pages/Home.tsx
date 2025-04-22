@@ -11,12 +11,14 @@ import useNotes from "../hooks/useNotes";
 import useLogin from "../hooks/useLogin";
 import { Note } from "../types";
 import { useAppSelector} from "../hooks/useType";
+import CircularProgress from "../components/CircularProgress";
 
 
 const Home = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loadingModal, setLoadingModal] = useState(true)
   const [checked] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("tab-1");
   const [openToast, setOpenToast] = useState<boolean>(false);
@@ -30,6 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     checkLogin();
+
   }, []);
 
 
@@ -42,9 +45,13 @@ const Home = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const closeLoadingModal = ()=>{setLoadingModal(false)}
 
   if(notes[0]===-1)
-    return <div>Loading...</div>
+    // return (<div>Loading...</div>)
+    return (<Modal isModalOpen={loadingModal} closeModal={closeLoadingModal} title="" modalType="loading">
+      <CircularProgress/>
+    </Modal>)
   else
   return (
     <>
