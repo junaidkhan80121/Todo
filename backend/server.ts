@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 8000
 
 //middlewares
 app.use(express.json());
-app.use(cors({origin: ["http://localhost:3000",'http://localhost:5173'],credentials: true}));
+app.use(cors({origin: ["https://todoapp-sz.onrender.com"],credentials: true}));
 app.use(cookieParser());
 
 
