@@ -8,6 +8,7 @@ export const notesController = {
         try{
             const user = (req as Request & { user: object }).user;
             const result = await noteServices.getNotesService(user as userToken)
+            // res.cookie
             return res.status(result.status).send(result.payload)
         }catch(err){
             return res.status(500).send({msg:"Internal Server Error"})

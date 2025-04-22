@@ -17,5 +17,4 @@ export const logoutAPI = async()=>{
 
 export const refreshTokenAPI = async()=>{
   return await axios.get(`${BASEURL}/${AUTHURL}/refreshtoken`,{withCredentials:true});
-  
 }

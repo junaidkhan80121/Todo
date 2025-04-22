@@ -11,7 +11,9 @@ const useLogin = () => {
 
   const refreshToken = async () => {
     try {
+      console.log("1")
       const res = await refreshTokenAPI();
+      console.log("2")
       const newRefreshToken = await res.data.accessToken;
       localStorage.setItem("accessToken", newRefreshToken);
     } catch (err) {
@@ -24,8 +26,8 @@ const useLogin = () => {
 
   const checkLogin = async () => {
     if (localStorage.getItem("loggedIn") === "true") {
-      await getUserNotes();
       await refreshToken();
+      await getUserNotes();
     } 
     else navigate("/login");
   };

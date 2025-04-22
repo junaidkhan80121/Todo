@@ -17,6 +17,7 @@ export const authController = {
     
    },
    refreshTokenController:async(req:Request,res:Response)=>{
+     // console.log("Refresh Token:")
         const result = await authServices.refreshTokenService(req.cookies.refreshToken,res)
         return res.status(result.status).send(result.payload)
    }

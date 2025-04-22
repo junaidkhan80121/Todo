@@ -32,7 +32,7 @@ const Home = () => {
 
   useEffect(() => {
     checkLogin();
-
+    setLoadingModal(false);
   }, []);
 
 
@@ -47,11 +47,11 @@ const Home = () => {
   const closeModal = () => setIsModalOpen(false);
   const closeLoadingModal = ()=>{setLoadingModal(false)}
 
-  if(notes[0]===-1)
-    // return (<div>Loading...</div>)
+  if(notes[0]===-1 || notes==undefined)
     return (<Modal isModalOpen={loadingModal} closeModal={closeLoadingModal} title="" modalType="loading">
       <CircularProgress/>
     </Modal>)
+
   else
   return (
     <>

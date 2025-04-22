@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import Toast from "../components/Toast";
 import useSignup from "../hooks/useSignup";
 import { FormSubmitEvent } from "../types";
+import Modal from "../components/Modal";
+import CircularProgress from "../components/CircularProgress";
 
 const Signup = () => {
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [signupModal, setSignupModal] = useState(false)
   const { setEmail, setPassword, setVerifyPassword, signupUser } = useSignup();
   const navigate = useNavigate();
 
@@ -18,6 +21,8 @@ const Signup = () => {
       setToastOpen(false);
     }, 4000);
   };
+
+  const closeSignupModal = ()=>{setSignupModal(false)}
 
   const handleSignup = async (e: FormSubmitEvent) => {
     e.preventDefault();
@@ -83,6 +88,9 @@ const Signup = () => {
           toastType="error"
         />
       </div>
+      <Modal isModalOpen={signupModal} closeModal={closeSignupModal} title="" modalType="loading">
+              <CircularProgress/>
+         </Modal>
     </>
   );
 };
