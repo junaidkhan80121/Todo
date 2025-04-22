@@ -17,7 +17,7 @@ const Home = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(false);
+  const [checked] = useState<boolean>(false);
   const [tab, setTab] = useState<string>("tab-1");
   const [openToast, setOpenToast] = useState<boolean>(false);
   const [toastMsg, setToastMsg] = useState<string>("");
