@@ -15,7 +15,7 @@ const useLogin = () => {
       const newRefreshToken = res.data.accessToken;
       localStorage.setItem("accessToken", newRefreshToken);
     } catch (err) {
-      console.log("Error: ",((err as any).message))
+      console.log("Error: ",((err as Error).message))
       localStorage.removeItem("loggedIn");
       localStorage.removeItem("accessToken");
       navigate("/login");
@@ -26,7 +26,8 @@ const useLogin = () => {
     if (localStorage.getItem("loggedIn") === "true") {
       await refreshToken();
       await getUserNotes();
-    } else navigate("/login");
+    } 
+    else navigate("/login");
   };
 
   const loginUser = async (setToastMessage: React.Dispatch<React.SetStateAction<string>>, displayToast: () => void) => {

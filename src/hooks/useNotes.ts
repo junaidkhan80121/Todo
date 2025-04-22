@@ -176,7 +176,6 @@ const useNotes = () => {
     try {
       const res = await getNotes();
       const allNotes = res.data.notes;
-      // console.log(allNotes)
       dispatch(setNotes(allNotes));
       const tempCompletedNotes = allNotes.filter(
         (note: Note) => note.checked === true

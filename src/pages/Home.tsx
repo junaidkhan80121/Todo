@@ -43,6 +43,9 @@ const Home = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  if(notes[0]===-1)
+    return <div>Loading...</div>
+  else
   return (
     <>
       <div className="control-box">
@@ -93,7 +96,7 @@ const Home = () => {
           </div>
           <div className="main-block">
             {notes.length != 0 ? (
-              notes.map((note: Note) => (
+              notes.map((note: any) => (
                 <Card
                   key={note._id}
                   // setIsModalOpen={setIsModalOpen}

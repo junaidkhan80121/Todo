@@ -99,7 +99,7 @@ const authServices = {
     try {
       await connectDB();
       if (!refreshToken)
-        return { status: 401, payload: { msg: "Unauthorized Request" } };
+        return { status: 401, payload: { msg: "Unauthorized-Request" } };
       const decodedToken = jwt.verify(refreshToken, process.env.REFRESHTOKENKEY!) as jwt.JwtPayload;
       const UID = decodedToken.uid;
       const accessToken = createAccessToken({ uid: UID });

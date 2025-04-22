@@ -1,15 +1,17 @@
-// const mongoose = require("mongoose");
-import * as mongoose from 'mongoose';
-import dotenv from 'dotenv'
-dotenv.config()
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-export async function connectDB() {
+dotenv.config();
+
+export async function connectDB(){
   try {
     await mongoose.connect(process.env.MONGO_DB_URI!, {
+      dbName: 'noteapp',
     });
-    console.log("Database connected");
+    console.log("DB connected");
+
+
   } catch (error) {
-    console.error("Error in connecting to database:", error);
-    // process.exit(1);
+    console.error("Error in connecting to database:", (error as Error).message);
   }
 }
