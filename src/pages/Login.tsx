@@ -6,12 +6,16 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { FormSubmitEvent } from "../types";
+import Modal from "../components/Modal";
+import CircularProgress from "../components/CircularProgress";
 
 const Login = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const { setEmail, setPassword, loginUser } = useLogin();
+  const [loginModal, setLoginModal] = useState(false)
   const navigate = useNavigate();
+  const closeLoginModal = ()=>{setLoginModal(false)}
 
   const displayToast = () => {
     setShowToast(true);
@@ -22,7 +26,9 @@ const Login = () => {
 
   const handleLogin = async (e: FormSubmitEvent) => {
     e.preventDefault();
+    setLoginModal(true)
     await loginUser(setToastMessage, displayToast);
+    setLoginModal(false)
   };
 
   useEffect(() => {
@@ -83,6 +89,9 @@ const Login = () => {
             toastType="error"
           />
         </div>
+         <Modal isModalOpen={loginModal} closeModal={closeLoginModal} title="">
+              <CircularProgress/>
+         </Modal>
       </div>
     </>
   );

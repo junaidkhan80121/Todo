@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Toast from "./Toast";
 import { CardProps } from "../types/index";
 import useNotes from "../hooks/useNotes";
+import CircularProgress from "./CircularProgress";
 
 const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +25,9 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
   const [toastType, setToastType] = useState("success");
   const closeModal = () => setIsModalOpen(false);
   const closeDeleteModal = () => setOpenDeleteModel(false);
+  const [noteModal, setNoteModal] = useState(false);
   const { updateUserNote, updateUserNoteStatus, deleteUserNote } = useNotes();
+  const closeNoteModal = ()=>{setNoteModal(false)}
 
   const showToast = () => {
     setOpenToast(true);
@@ -94,6 +97,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
                 const newValue = e.target.checked;
                 setCheckedVal(newValue);
                 updateUserNoteStatus(id, setToastMsg, setToastType, showToast);
+                setNoteModal(false)
               }}
             />
           </div>
@@ -141,7 +145,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
             <div className="delete-modal">
               <button
                 className="delete-note-btn-modal"
-                onClick={async () =>
+                onClick={async () =>{
                   await deleteUserNote(
                     id,
                     setToastMsg,
@@ -149,6 +153,8 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
                     showToast,
                     setOpenDeleteModel
                   )
+                  setNoteModal(false)
+                }
                 }
               >
                 Yes
@@ -213,16 +219,9 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
               <button
                 className="update-btn"
                 onClick={async () =>
-                  await updateUserNote(
-                    id,
-                    titleVal,
-                    DescriptionVal,
-                    checkedVal,
-                    setToastMsg,
-                    setToastType,
-                    setIsModalOpen,
-                    showToast
-                  )
+                  {await updateUserNote(id,titleVal,DescriptionVal,checkedVal,setToastMsg,setToastType,setIsModalOpen,showToast)
+                    setNoteModal(false)
+                  }
                 }
               >
                 Update Note
@@ -237,6 +236,9 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
         showToast={openToast}
         closeToast={setOpenToast}
       />
+      <Modal isModalOpen={noteModal} closeModal={closeNoteModal} title="">
+              <CircularProgress/>
+      </Modal>
     </>
   );
 };

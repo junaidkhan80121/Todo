@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 const {userModel} = require('../models/model.user')
+import {connectDB} from '../db'
 import {createAccessToken, createRefreshToken} from '../utils/tokens';
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -10,6 +11,7 @@ import * as jwt from 'jsonwebtoken';
 const authServices = {
   loginService: async ({ email , password }:{email:string, password:string}, res:Response) => {
     try {
+      await connectDB();
       if (!email || !password)
         return res.status(401).send({ msg: "Bad Input" });
       if (email.length < 5 || password.length < 5)
@@ -45,6 +47,7 @@ const authServices = {
 
   signupService: async ({ email, password }:{email:string,password:string}, res:Response) => {
     try {
+      await connectDB();
       if (!email || !password)
         return {
           status: 400,
@@ -94,6 +97,7 @@ const authServices = {
 
   refreshTokenService: async (refreshToken:string, res:Response) => {
     try {
+      await connectDB();
       if (!refreshToken)
         return { status: 401, payload: { msg: "Unauthorized Request" } };
       const decodedToken = jwt.verify(refreshToken, process.env.REFRESHTOKENKEY!) as jwt.JwtPayload;
@@ -113,6 +117,7 @@ const authServices = {
 
   logoutService: async (refreshToken:string, res:Response) => {
     try {
+      await connectDB();
       if (!refreshToken)
         return res.status(401).send({ msg: "Unauthorized Request" });
       res.clearCookie("refreshToken", { path: "/auth", httpOnly: true });

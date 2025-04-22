@@ -5,12 +5,9 @@ import "../../styles/home.css";
 type ToastProps = {
   message: String;
   showToast: boolean;
-  closeToast: React.Dispatch<React.SetStateAction<boolean>>,
-  toastType: ToastType;
+  closeToast: React.Dispatch<React.SetStateAction<boolean>>;
+  toastType: string;
 };
-
-type ToastType = 'success' | 'warning' | 'error'
-
 
 const Toast: React.FC<ToastProps> = ({
   message,
@@ -20,7 +17,7 @@ const Toast: React.FC<ToastProps> = ({
 }) => {
   if (!showToast) return null;
 
-  const toast_styles: Record<ToastType,React.CSSProperties> = {
+  const toast_styles: any = {
     success: {
       backgroundColor: "green",
     },

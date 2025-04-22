@@ -1,5 +1,6 @@
 // import * as jwt from 'jsonwebtoken';
-import { userModel } from "../models/model.user";
+const {userModel} = require('../models/model.user')
+import {connectDB} from '../db'
 require("dotenv").config();
 import { Notes, userToken } from "../types";
 
@@ -16,6 +17,7 @@ export const noteServices = {
 
   addNoteService: async ({ title, description }:{title:string,description:string}, user: userToken) => {
     try {
+      await connectDB();
       if (!title || !description)
         return {
           status: 401,
@@ -34,6 +36,7 @@ export const noteServices = {
 
   deleteNoteService: async ({ noteId }:{noteId:string}, user: userToken) => {
     try {
+      await connectDB();
       if (!noteId)
         return {
           status: 400,
@@ -51,6 +54,7 @@ export const noteServices = {
 
   updateNoteService: async ({ id, title, description, checked }:{id:string,title:string,description:string,checked:string|boolean},user: userToken) => {
     try {
+      await connectDB();
       if (!id || !title || !description)
         return {
           status: 401,
@@ -72,6 +76,7 @@ export const noteServices = {
 
   updateNoteStatusService: async ({ id }:{id:string}, user: userToken) => {
     try {
+      await connectDB();
       if (!id)
         return {
           status: 401,
