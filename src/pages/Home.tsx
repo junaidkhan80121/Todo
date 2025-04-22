@@ -22,17 +22,17 @@ const Home = () => {
   const [toastType, setToastType] = useState<string>("success");
   const { addUserNote } = useNotes();
   const notes = useSelector((state: any) => state.noteSlice.notes);
-  const pendingNotes = useSelector(
-    (state: any) => state.noteSlice.pendingNotes
-  );
-  const completedNotes = useSelector(
-    (state: any) => state.noteSlice.completedNotes
-  );
+  const pendingNotes = useSelector((state: any) => state.noteSlice.pendingNotes);
+  const completedNotes = useSelector((state: any) => state.noteSlice.completedNotes);
   const { checkLogin } = useLogin();
 
   useEffect(() => {
     checkLogin();
   }, []);
+
+  // useEffect(()=>{
+    // console.log("re-rendered")
+  // },[notes])
 
   const showToast = () => {
     setOpenToast(true);
@@ -94,9 +94,9 @@ const Home = () => {
           </div>
           <div className="main-block">
             {notes.length != 0 ? (
-              notes.map((note: any, index: any) => (
+              notes.map((note: any) => (
                 <Card
-                  key={index}
+                  key={note._id}
                   // setIsModalOpen={setIsModalOpen}
                   // isModalOpen={isModalOpen}
                   title={note.title}
@@ -176,9 +176,9 @@ const Home = () => {
           </div>
           <div className="main-block">
             {completedNotes.length != 0 ? (
-              completedNotes.map((note: any, index: any) => (
+              completedNotes.map((note: any) => (
                 <Card
-                  key={index}
+                  key={note._id}
                   title={note.title}
                   description={note.description}
                   id={note._id}
@@ -251,9 +251,9 @@ const Home = () => {
           </div>
           <div className="main-block">
             {pendingNotes.length != 0 ? (
-              pendingNotes.map((note: any, index: any) => (
+              pendingNotes.map((note: any) => (
                 <Card
-                  key={index}
+                  key={note._id}
                   title={note.title}
                   description={note.description}
                   id={note._id}

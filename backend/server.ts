@@ -1,16 +1,18 @@
 //library imports
-const express = require("express");
+import express, {Response, Request, NextFunction} from 'express'
 const cookieParser = require('cookie-parser')
+// import cookieParser from 'cookie-parser'
+const cors = require('cors')
+import * as mongoose from 'mongoose'
+import * as dotenv from 'dotenv';
 const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-require('dotenv').config();
+dotenv.config();
 
 
 //controller imports
-const authController = require('./routes/auth.routes');
-const noteController = require('./routes/notes.routes')
-const isLoggedIn = require('./middlewares/auth.middleware')
+import {authRouter} from './routes/auth.routes';
+import {notesRouter} from './routes/notes.routes';
+import {isLoggedIn} from './middlewares/auth.middleware';
 
 //Select PORT number
 const PORT = process.env.PORT || 8000
@@ -26,16 +28,16 @@ app.use(cookieParser());
 mongoose
   .connect("mongodb://localhost:27017/notesapp")
   .then(() => console.log("Database connected"))
-  .catch((err) => console.log("Error", err));
+  .catch((err:any) => console.log("Error", err));
 
 
 //routes
-app.use('/notes',isLoggedIn ,noteController)
-app.use('/auth',authController);
+app.use('/notes',isLoggedIn ,notesRouter)
+app.use('/auth',authRouter);
 
 
-// error route
-app.use((err,req,res,next)=>{
+//error route
+app.use((err:any,req:Request,res:any,next:NextFunction)=>{
   if(err)
     return res.status(500).send({msg:"Internal error. Please try after sometime."})
   next()
