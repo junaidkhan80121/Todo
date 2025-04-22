@@ -32,7 +32,7 @@ const authServices = {
       const refreshToken = createRefreshToken({ uid: user._id });
       const accessToken = createAccessToken({ uid: user._id });
       res.cookie("refreshToken", refreshToken, {
-        path: "/auth",
+        path: "/",
         httpOnly: true,
         sameSite:"none"
       });
@@ -86,7 +86,7 @@ const authServices = {
       const accessToken = createAccessToken({ uid: newUser._id });
       const refreshToken = createRefreshToken({ uid: newUser._id });
       res.cookie("refreshToken", refreshToken, {
-        path: "/auth",
+        path: "/",
         httpOnly: true,
         sameSite:"none"
       });
@@ -100,6 +100,7 @@ const authServices = {
   refreshTokenService: async (refreshToken:string, res:Response) => {
     try {
       await connectDB();
+      console.log(refreshToken)
       if (!refreshToken)
         return { status: 401, payload: { msg: "Unauthorized-Request" } };
       const decodedToken = jwt.verify(refreshToken, process.env.REFRESHTOKENKEY!) as jwt.JwtPayload;
@@ -122,7 +123,7 @@ const authServices = {
       await connectDB();
       if (!refreshToken)
         return res.status(401).send({ msg: "Unauthorized Request" });
-      res.clearCookie("refreshToken", { path: "/auth", httpOnly: true, sameSite:"none" });
+      res.clearCookie("refreshToken", { path: "/", httpOnly: true, sameSite:"none" });
       return { status: 200, payload: { msg: "Logged out Successfully" } };
     } catch (err) {
       console.log((err as Error).message);
