@@ -1,6 +1,5 @@
 import React, { SetStateAction } from "react";
-// import type { RootState } from './store';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
+
 
 export type Note = {
   _id: string,
