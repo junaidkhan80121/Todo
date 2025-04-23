@@ -93,12 +93,14 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
               className="checkbox"
               type="checkbox"
               checked={checkedVal}
-              onChange={(e) => {
+              onChange={async(e) => {
+                setNoteModal(true)
                 const newValue = e.target.checked;
                 setCheckedVal(newValue);
-                updateUserNoteStatus(id, setToastMsg, setToastType, showToast);
+                await updateUserNoteStatus(id, setToastMsg, setToastType, showToast);
                 setNoteModal(false)
-              }}
+              }
+            }
             />
           </div>
           <div
@@ -147,6 +149,7 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
               <button
                 className="delete-note-btn-modal"
                 onClick={async () =>{
+                  setNoteModal(true)
                   await deleteUserNote(
                     id,
                     setToastMsg,
@@ -221,7 +224,8 @@ const Card: React.FC<CardProps> = ({ title, description, id, checked }) => {
               <button
                 className="update-btn"
                 onClick={async () =>
-                  {await updateUserNote(id,titleVal,DescriptionVal,checkedVal,setToastMsg,setToastType,setIsModalOpen,showToast)
+                  { setNoteModal(true)
+                    await updateUserNote(id,titleVal,DescriptionVal,checkedVal,setToastMsg,setToastType,setIsModalOpen,showToast)
                     setNoteModal(false)
                   }
                 }

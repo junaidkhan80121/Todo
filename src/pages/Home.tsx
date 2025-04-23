@@ -151,6 +151,7 @@ const Home = () => {
                   <button
                     className="add-btn"
                     onClick={async () => {
+                      setLoadingModal(true)
                       await addUserNote(
                         title,
                         description,
@@ -162,6 +163,7 @@ const Home = () => {
                         setTitle,
                         setDescription
                       );
+                      setLoadingModal(false)
                     }}
                   >
                     Add Note
@@ -330,6 +332,9 @@ const Home = () => {
         closeToast={setOpenToast}
         toastType={toastType}
       />
+      <Modal isModalOpen={loadingModal} closeModal={closeLoadingModal} title="" modalType="loading">
+      <CircularProgress/>
+    </Modal>
     </>
   );
 };

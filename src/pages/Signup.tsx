@@ -26,7 +26,9 @@ const Signup = () => {
 
   const handleSignup = async (e: FormSubmitEvent) => {
     e.preventDefault();
+    setSignupModal(true)
     await signupUser(setToastMessage, displayToast);
+    setSignupModal(false)
   };
 
   useEffect(() => {
