@@ -34,7 +34,8 @@ const authServices = {
       res.cookie("refreshToken", refreshToken, {
         path: "/",
         httpOnly: true,
-        sameSite:"none"
+        sameSite:"none",
+        secure: true
       });
       return {
         status: 200,
@@ -88,7 +89,8 @@ const authServices = {
       res.cookie("refreshToken", refreshToken, {
         path: "/",
         httpOnly: true,
-        sameSite:"none"
+        sameSite:"none",
+        secure: true
       });
       return { status: 201, payload: { accessToken: accessToken } };
     } catch (err) {
@@ -123,7 +125,7 @@ const authServices = {
       await connectDB();
       if (!refreshToken)
         return res.status(401).send({ msg: "Unauthorized Request" });
-      res.clearCookie("refreshToken", { path: "/", httpOnly: true, sameSite:"none" });
+      res.clearCookie("refreshToken", { path: "/", httpOnly: true, sameSite:"none", secure: true });
       return { status: 200, payload: { msg: "Logged out Successfully" } };
     } catch (err) {
       console.log((err as Error).message);

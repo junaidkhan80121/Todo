@@ -24,7 +24,7 @@ const useLogin = () => {
 
   const checkLogin = async () => {
     if (localStorage.getItem("loggedIn") === "true") {
-      // await refreshToken();
+      await refreshToken();
       await getUserNotes();
     } 
     else navigate("/login");
