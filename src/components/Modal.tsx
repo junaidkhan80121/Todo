@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({
 
   if(modalType==='loading')
   return (
-    <div className="modal-layout-loading" onClick={closeModal}>
+    <div className="modal-layout-loading">
       <div  onClick={(e) => e.stopPropagation()}>
         {children}
       </div>

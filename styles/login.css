@@ -43,6 +43,7 @@
 
 .form-box input {
   margin: 2vh 0 2vh 0;
+  padding: 4vw 3vw;
 }
 
 .form-box button {
@@ -63,7 +64,7 @@
   padding: 15px 40px;
   margin: 6vh 0 0 0;
   color: white;
-  border-radius: 5%;
+  border-radius: 2%;
   margin: 0 10vw;
 }
 
@@ -72,7 +73,7 @@
   font-size: 15px;
   background-color: #ff4122 !important;
   padding: 2vh;
-  border-radius: 3%;
+  border-radius: 2%;
   color: white;
   /* font-weight: bold; */
 }

@@ -36,3 +36,12 @@
   color: white;
   text-decoration: "bold";
 }
+
+@media (max-width:760px) {
+  .navbar-title-text {
+    font-size: 4vw;
+    font-weight: bold;
+    margin-left: 2vw;
+    color: white;
+  }
+}
