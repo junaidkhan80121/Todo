@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 .container-login-box {
-  /* margin: 20vh 30vw 20vh 30vw; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +34,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   gap: 5vh;
   width: 45vw;
   min-width: 45vw;
@@ -43,7 +41,7 @@
 
 .form-box input {
   margin: 2vh 0 2vh 0;
-  padding: 4vw 3vw;
+  padding: 1vw;
 }
 
 .form-box button {
@@ -75,7 +73,6 @@
   padding: 2vh;
   border-radius: 2%;
   color: white;
-  /* font-weight: bold; */
 }
 
 @media (max-width: 900px) {
@@ -85,11 +82,17 @@
   .form-box {
     min-width: 90vw !important;
     width: 90vw;
-    padding: 15vw;
     padding: 5vw !important;
-    /* background-color: red; */
   }
-  .container-login-box {
-    /* background-color: yellow; */
+  .form-box input {
+    margin: 2vh 0 2vh 0;
+    padding: 3vw;
+  }
+  .login-btn {
+    padding: 1.5vh 0vh !important;
+  }
+  
+  .signup-link {
+    padding: 1.5vh 0vh;
   }
 }

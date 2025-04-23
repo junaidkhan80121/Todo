@@ -44,4 +44,10 @@
     margin-left: 2vw;
     color: white;
   }
+  .navlink {
+    margin-left: 2vw;
+    font-size: "25px" !important;
+    color: white;
+    text-decoration: "bold";
+  }
 }
