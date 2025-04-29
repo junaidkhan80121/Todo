@@ -20,6 +20,11 @@ export const authController = {
      // console.log("Refresh Token:")
         const result = await authServices.refreshTokenService(req.cookies.refreshToken,res)
         return res.status(result.status).send(result.payload)
+   },
+   refreshBackend:async(req:Request,res:Response|any)=>{
+     const result = await authServices.cronjobRoute(req);
+     return res.status(result.status).send(result.payload);
+
    }
 
 }

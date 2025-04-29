@@ -132,6 +132,13 @@ const authServices = {
       return { status: 500, payload: { msg: "Internal server Error" } };
     }
   },
+  cronjobRoute: async(res:Request|any)=>{
+    try{
+      return { status: 200, payload: { msg: "Route to keep ackend alive" } };
+    }catch(err){
+      return { status: 500, payload: { msg: "Internserver error" } };
+    }
+  }
 };
 
 module.exports = authServices;

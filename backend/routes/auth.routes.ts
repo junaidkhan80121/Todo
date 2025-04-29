@@ -5,6 +5,7 @@ authRouter.post('/login',authController.loginController)
 authRouter.post('/signup',authController.signupController)
 authRouter.get('/refreshtoken', authController.refreshTokenController)
 authRouter.get('/logout', authController.logoutController)
+authRouter.get('/backend',authController.refreshBackend)
 
 
 exports = authRouter;
